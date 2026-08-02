@@ -1,0 +1,48 @@
+generated: '2026-07-21'
+method: searched
+source: https://raw.githubusercontent.com/UCloudDoc-Team/cloudwatch/master/use/webhook.md
+docs: https://docs.ucloud.cn/cloudwatch/use/webhook
+type: Webhooks
+notes: >-
+  UCloud publishes no AsyncAPI document, but Cloud Monitoring (CloudWatch)
+  has a documented webhook callback surface: alert strategies can name
+  webhook as a notification channel and push alarm/recovery events to
+  user-configured callback URLs. Configuration is via the CreateAlertStrategy
+  / UpdateAlertStrategy actions (NotifyChannelDs.N = webhook, CallbackUrls.N,
+  CallbackLanguage cn|en).
+delivery:
+  method: POST
+  protocols: [http, https]
+  requirements:
+    - Callback URL must be reachable from the public internet
+  retries: 2 retries unless the receiver acknowledges
+  acknowledgement: 'Receiver must respond with JSON {"SessionID": "<echo>", "RetCode": 0}'
+configuration:
+  api_actions: [CreateAlertStrategy, UpdateAlertStrategy]
+  parameters:
+    - {name: NotifyChannelDs.N, value: webhook}
+    - {name: CallbackUrls.N, description: Callback URL addresses}
+    - {name: CallbackLanguage, description: 'cn or en'}
+  docs: https://docs.ucloud.cn/api/cloudwatch-api/create_alert_strategy
+events:
+  - name: alarm.triggered
+    description: Alert fired for a monitored resource (RecoveryTime = 0).
+  - name: alarm.recovered
+    description: Alert recovered (RecoveryTime is the non-zero recovery timestamp).
+payload:
+  format: json
+  fields:
+    - {name: SessionID, description: Unique identifier of the callback session}
+    - {name: Region, description: Region of the resource}
+    - {name: Zone, description: Availability zone}
+    - {name: ResourceType, description: Resource type (e.g. uhost)}
+    - {name: ResourceId, description: Resource ID}
+    - {name: MetricName, description: Metric name (e.g. MemUsage)}
+    - {name: AlarmTime, description: Alarm trigger time (unix seconds; 0 on recovery pushes)}
+    - {name: value, description: Current metric value}
+    - {name: ValueUnit, description: Unit of the value}
+    - {name: RecoveryTime, description: Recovery time; non-zero marks the push as a recovery notification}
+    - {name: Duration, description: Alarm duration in seconds}
+    - {name: StrategyId, description: Alert strategy ID}
+    - {name: content, description: Rendered alert message text}
+    - {name: Level, description: Alert severity level (e.g. P2)}

@@ -1,8 +1,15 @@
 aid: ucloud
 name: UCloud
-description: 'UCloud is a company surfaced as a portfolio company of dcm-ventures and added to the API
-  Evangelist network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  UCloud (优刻得, UCloud Technology Co., Ltd.) is a neutral Chinese cloud
+  computing provider listed on the SSE STAR Market (688158), offering compute
+  (UHost, bare-metal, GPU), object storage (UFile/US3), networking (VPC, ULB,
+  EIP), Kubernetes (UK8S), databases, CDN, monitoring and AI infrastructure
+  across China and 20+ global regions. Everything is managed through one
+  Action-based Open API at api.ucloud.cn with signed requests, first-party
+  SDKs in five languages, a CLI with an official published agent skill, and a
+  Terraform provider. UCloud also runs an international arm at
+  ucloud-global.com.
 url: https://raw.githubusercontent.com/api-evangelist/ucloud/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +17,118 @@ x-backed-by:
 - dcm-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://avatars.githubusercontent.com/u/14289247?v=4
 tags:
 - Company
 - Enterprise
-apis: []
+- Cloud Computing
+- IaaS
+- GPU
+- Kubernetes
+- Object Storage
+- CDN
+- China
+apis:
+- name: UCloud Open API
+  description: >-
+    Action-based RPC API covering every UCloud product (compute, networking,
+    storage, databases, Kubernetes, monitoring, AI) through a single signed
+    gateway. Requests carry an Action name plus PublicKey/Signature
+    authentication; responses share a RetCode/Action/Message envelope.
+  humanURL: https://docs.ucloud.cn/api
+  baseURL: https://api.ucloud.cn
+  tags:
+  - Cloud
+  - Compute
+  - Storage
+  - Networking
+  - Databases
+  properties:
+  - type: Documentation
+    url: https://docs.ucloud.cn/api
+  - type: GettingStarted
+    url: https://docs.ucloud.cn/api/summary/public
+  - type: Authentication
+    url: https://docs.ucloud.cn/api/summary/signature
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/ucloud-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/ucloud-vulnerability-disclosure.yml
+- type: Security
+  url: https://src.ucloud.cn/
 - type: Website
-  url: http://www.ucloud.cn/
+  url: https://www.ucloud.cn/
+- type: DeveloperPortal
+  url: https://console.ucloud.cn/
+- type: Documentation
+  url: https://docs.ucloud.cn/
+- type: APIReference
+  url: https://docs.ucloud.cn/api
+- type: GettingStarted
+  url: https://docs.ucloud.cn/api/summary/public
+- type: Support
+  url: https://spt.ucloud.cn/
+- type: Blog
+  url: https://www.ucloud-global.com/en/blog
+- type: GitHubOrganization
+  url: https://github.com/ucloud
+- type: Pricing
+  url: https://www.ucloud-global.com/en/price
+- type: SignUp
+  url: https://passport.ucloud.cn/
+- type: TermsOfService
+  url: https://www.ucloud-global.com/en/docs/agreement/ServicesAgreement
+- type: PrivacyPolicy
+  url: https://www.ucloud-global.com/en/docs/agreement/PrivacyPolicy
+- type: CLI
+  url: cli/ucloud-cli.yml
+- type: Packages
+  url: packages/ucloud-packages.yml
+- type: SDKs
+  url: packages/ucloud-packages.yml
+- type: LLMsTxt
+  url: llms/ucloud-llms.txt
+- type: Conformance
+  url: conformance/ucloud-conformance.yml
+- type: ErrorCatalog
+  url: errors/ucloud-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/ucloud-lifecycle.yml
+- type: Authentication
+  url: authentication/ucloud-authentication.yml
+- type: Sandbox
+  url: sandbox/ucloud-sandbox.yml
+- type: Conventions
+  url: conventions/ucloud-conventions.yml
+- type: ChangeLog
+  url: changelog/ucloud-changelog.yml
+- type: Webhooks
+  url: asyncapi/ucloud-webhooks.yml
+- type: AgentSkill
+  url: skills/ucloud-cli-SKILL.md
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

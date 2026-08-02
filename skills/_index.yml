@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/ucloud/skills (commit a5840eec5cfbaee4a1013cb6768942323dd33c92, 2026-06-24)
+notes: >-
+  UCloud publishes its own Agent Skill package: an official `ucloud-cli`
+  skill (Claude-style SKILL.md with references/, agents/openai.yaml and
+  evals/) that teaches an agent to operate UCloud resources through the
+  first-party CLI, falling back to raw `ucloud api` Open API actions
+  documented in github.com/UCloudDoc-Team/api. SKILL.md is saved verbatim;
+  the full package (reference files for CLI usage, product rules for
+  uhost/eip/security, error handling, doc sources, common lookups,
+  deployment) lives in the upstream repo.
+skills:
+  - file: ucloud-cli-SKILL.md
+    name: ucloud-cli
+    description: Operate UCloud resources (uhost, EIP, ULB, databases, deployments) through the official ucloud CLI, with raw Open API fallback.
+    api: https://api.ucloud.cn (Action-based Open API)
+    operations: [DescribeUHostInstance, DescribeULB, ListRegions, ListZones, GetProjectList, GetBalance]
+    provider_published: true
+    upstream: https://github.com/ucloud/skills/tree/main/ucloud-cli

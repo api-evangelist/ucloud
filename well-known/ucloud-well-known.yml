@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of ucloud.cn hosts, 2026-07-21
+notes: >-
+  No genuine /.well-known/ discovery surface was found. www.ucloud.cn,
+  api.ucloud.cn and docs.ucloud.cn all soft-200 every path: www.ucloud.cn
+  returns its Next.js HTML shell for any URL, api.ucloud.cn answers every path
+  with the RPC error envelope {"RetCode":160,"Message":"Missing Action"}
+  (Content-Type application/json), and docs.ucloud.cn returns the docs SPA
+  shell. None of the responses are the requested well-known document, so no
+  raw files were saved and no WellKnown/SecurityTxt pointers were wired.
+hosts:
+  - host: https://www.ucloud.cn
+    documents:
+      - {path: /.well-known/security.txt, status: 200, soft: true, evidence: text/html Next.js shell, file: null}
+      - {path: /.well-known/openid-configuration, status: 200, soft: true, evidence: text/html Next.js shell, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 200, soft: true, evidence: text/html Next.js shell, file: null}
+      - {path: /.well-known/api-catalog, status: 200, soft: true, evidence: text/html Next.js shell, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 200, soft: true, evidence: text/html Next.js shell, file: null}
+  - host: https://api.ucloud.cn
+    documents:
+      - {path: /.well-known/security.txt, status: 200, soft: true, evidence: 'JSON {"RetCode":160,"Message":"Missing Action"} catch-all', file: null}
+      - {path: /.well-known/openid-configuration, status: 200, soft: true, evidence: 'JSON {"RetCode":160,"Message":"Missing Action"} catch-all', file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 200, soft: true, evidence: 'JSON {"RetCode":160,"Message":"Missing Action"} catch-all', file: null}
+      - {path: /.well-known/api-catalog, status: 200, soft: true, evidence: 'JSON {"RetCode":160,"Message":"Missing Action"} catch-all', file: null}
+      - {path: /.well-known/ai-plugin.json, status: 200, soft: true, evidence: 'JSON {"RetCode":160,"Message":"Missing Action"} catch-all', file: null}
+  - host: https://docs.ucloud.cn
+    documents:
+      - {path: /.well-known/security.txt, status: 200, soft: true, evidence: text/html docs SPA shell, file: null}
+      - {path: /.well-known/openid-configuration, status: 200, soft: true, evidence: text/html docs SPA shell, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 200, soft: true, evidence: text/html docs SPA shell, file: null}
+      - {path: /.well-known/api-catalog, status: 200, soft: true, evidence: text/html docs SPA shell, file: null}
+      - {path: /llms.txt, status: 200, soft: true, evidence: text/html docs SPA shell (no llms.txt published), file: null}
+  - host: https://www.ucloud-global.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}

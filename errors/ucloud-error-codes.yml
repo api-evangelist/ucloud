@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.ucloud.cn/api/summary/public (UCloudDoc-Team/api summary/public.md)
+format: retcode-envelope
+notes: >-
+  UCloud's Open API does not use HTTP problem details (RFC 9457). Every
+  response — success or failure — is HTTP 200 with a common envelope; the
+  integer RetCode field carries the outcome (0 = success, non-zero = failure)
+  and Message carries the human-readable error. The platform-level RetCodes
+  below are documented in the API quickstart; each product API additionally
+  defines its own product-specific RetCodes in its reference pages
+  (https://docs.ucloud.cn/api). Guidance for RetCode 299 comes from UCloud's
+  published ucloud-cli agent skill (github.com/ucloud/skills).
+envelope:
+  fields:
+    - {name: RetCode, type: int, description: '0 on success, non-zero on failure', required: true}
+    - {name: Action, type: string, description: Echo of the API action name (typically <Action>Response), required: true}
+    - {name: Message, type: string, description: Detailed error description when RetCode is non-zero, required: false}
+errors:
+  - {code: 110, title: API response timeout (60 seconds)}
+  - {code: 130, title: API gateway or authentication/authorization service error}
+  - {code: 150, title: Service currently unavailable, remediation: Retry later; UCloud is restoring the service.}
+  - {code: 153, title: API request throttled (rate limited), remediation: Back off and retry; no rate-limit headers are documented.}
+  - {code: 160, title: Missing required parameter Action}
+  - {code: 161, title: Action does not exist}
+  - {code: 170, title: Missing signature, remediation: Provide the Signature parameter computed per the signature algorithm.}
+  - {code: 171, title: Signature error, remediation: Re-check parameter sorting and the SHA1 signature construction.}
+  - {code: 172, title: User does not exist}
+  - {code: 174, title: Token does not exist}
+  - {code: 292, title: Project does not exist, remediation: Verify ProjectId via GetProjectList.}
+  - {code: 293, title: Availability-zone permission error}
+  - {code: 294, title: Access IP denied, remediation: Check the account's open-API IP allowlist at console.ucloud.cn/uaccount/userinfo.}
+  - {code: 295, title: Security-lock verification failed}
+  - code: 299
+    title: IAM permission check failed
+    remediation: >-
+      Do not immediately treat as missing permission — if the API requires
+      ProjectId and it was omitted, 299 is returned; resolve ProjectId via
+      GetProjectList and retry before escalating to an IAM grant.

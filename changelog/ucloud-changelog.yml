@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/ucloud/ucloud-sdk-go/releases + https://github.com/ucloud/ucloud-cli/releases
+notes: >-
+  UCloud publishes no single dated platform-API changelog page; the Open API
+  Action surface is unversioned. The provider's dated, public change history
+  lives in the GitHub releases of its first-party SDKs and CLI, which track
+  API surface additions (the SDKs are generated from the API definitions).
+  Recent window captured below.
+scheme: semver (per SDK/CLI release train)
+current:
+  - {component: ucloud-sdk-go, version: v0.22.97, date: '2026-07-20'}
+  - {component: ucloud-cli, version: v0.3.9, date: '2026-07-20'}
+  - {component: ucloud-sdk-java, version: 1.2.43-release}
+entries:
+  - version: ucloud-cli v0.3.9
+    date: '2026-07-20'
+    breaking: false
+    highlights:
+      - support channel-key header for dedicated cloud channels
+      - add UGN CLI plugin
+      - fix UGN product.yaml owner name
+  - version: ucloud-cli v0.3.8
+    date: '2026-07-15'
+    breaking: false
+    highlights:
+      - add --wait-timeout-sec to override synchronous poll timeout
+      - WithTimeout per-command poll timeout, configurable poller default
+      - memcache resize command
+  - version: ucloud-sdk-go v0.22.97
+    date: '2026-07-20'
+    breaking: false
+    highlights: [generated API-definition updates (no release notes body)]
+  - version: ucloud-sdk-go v0.22.96
+    date: '2026-07-17'
+    breaking: false
+    highlights: [generated API-definition updates (no release notes body)]
+  - version: ucloud-sdk-go v0.22.95
+    date: '2026-07-15'
+    breaking: false
+    highlights: [generated API-definition updates (no release notes body)]

@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/ucloud/ucloud-cli (README) + https://github.com/ucloud/skills (ucloud-cli skill)
+docs: https://docs.ucloud.cn/developer/cli/index
+name: ucloud
+description: >-
+  First-party unified command line interface to UCloud services, built on
+  ucloud-sdk-go against the UCloud Open API. Supports Linux, macOS and
+  Windows, named profiles, OAuth browser login and AK/SK signing, shell
+  auto-completion, and a generic `ucloud api` escape hatch that can call any
+  Open API action.
+version: v0.3.9
+released: '2026-07-20'
+repository: https://github.com/ucloud/ucloud-cli
+install:
+  - {method: homebrew, command: brew install ucloud, platforms: [macos, linux]}
+  - {method: binary-release, url: 'https://github.com/ucloud/ucloud-cli/releases', notes: 'ucloud-{linux,darwin,windows}_{amd64,arm64}.zip with checksums'}
+  - {method: source, command: git clone https://github.com/ucloud/ucloud-cli.git && cd ucloud-cli && make install}
+  - {method: docker, command: docker pull uhub.service.ucloud.cn/ucloudcli/ucloud-cli:source-code}
+authentication:
+  modes:
+    - {mode: oauth, command: ucloud auth login, notes: 'Browser OAuth flow with local callback server; --no-browser for headless; access token ~1h, refresh token 7 days rotating; tokens in ~/.ucloud/credential.json (0600); ucloud auth logout clears local tokens.'}
+    - {mode: aksk, command: ucloud init / ucloud config add, notes: PublicKey/PrivateKey profiles for scripts and CI/CD; one auth mode per profile (AuthMode column).}
+configuration:
+  location: ~/.ucloud/config.json + ~/.ucloud/credential.json
+  profile_fields: [Profile, Active, ProjectID, Region, Zone, BaseURL, Timeout, PublicKey, PrivateKey, MaxRetryTimes]
+  notes: MaxRetryTimes applies only to idempotent APIs safe to repeat (e.g. ReleaseEIP).
+commands:
+  core:
+    - {command: ucloud init, purpose: first-time setup}
+    - {command: ucloud config list/add/update, purpose: manage named profiles}
+    - {command: ucloud auth login/logout, purpose: OAuth session management}
+    - {command: ucloud region / ucloud project list, purpose: read-only scope discovery}
+  products:
+    - {command: ucloud uhost ..., purpose: cloud host lifecycle (create/list/describe/...)}
+    - {command: ucloud eip allocate/bind ..., purpose: elastic IPs}
+    - {command: ucloud ulb ..., purpose: load balancers}
+    - {command: ucloud gssh create ..., purpose: GlobalSSH acceleration}
+    - {command: ucloud ugn ..., purpose: UGN plugin (added v0.3.9)}
+  generic:
+    - command: ucloud api --Action <APIName> --Param value ... | ucloud api --local-file req.json
+      purpose: Call any Open API action directly; JSON payloads via --local-file for large/nested requests.
+key_flows:
+  - Create a uhost, allocate + bind an EIP in one command (--create-eip-bandwidth-mb)
+  - Fall back from product subcommands to raw `ucloud api` actions per the published ucloud-cli agent skill
+environment:
+  - {variable: UCLOUD_CLI_DEBUG, purpose: 'set to "on" for debug logging of ucloud api calls'}
+  - {variable: 'UCLOUD_PROJECT_ID / UCLOUD_REGION / UCLOUD_ZONE / UCLOUD_BASE_URL', purpose: default scoping}
+completion:
+  - {shell: bash, setup: complete -C $(which ucloud) ucloud}
+  - {shell: zsh, setup: bashcompinit + complete -F $(which ucloud) ucloud}

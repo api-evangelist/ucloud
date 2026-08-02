@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: derived
+source: https://docs.ucloud.cn/api/summary/public + https://docs.ucloud.cn/api/summary/signature (no OpenAPI published)
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      The Open API authenticates with a proprietary PublicKey + SHA1 request
+      signature, not OAuth 2.0. (The first-party CLI offers an OAuth browser
+      login for interactive sessions, but the API contract itself is
+      signature-based.)
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery documents on any ucloud.cn host (all /.well-known/ probes returned catch-all responses).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a proprietary HTTP-200 envelope {RetCode, Action, Message} rather than application/problem+json (see errors/ucloud-error-codes.yml).
+  - id: pagination
+    conforms: true
+    evidence: List/Describe actions use a documented Offset/Limit convention with TotalCount in responses (e.g. DescribeUHostInstance Limit parameter in the API quickstart).
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key contract documented; the CLI only marks some naturally idempotent actions (e.g. ReleaseEIP) as retry-safe.
+  - id: json:api
+    conforms: false
+    evidence: Action-based RPC payloads, not JSON:API resource documents.
+  - id: scim
+    conforms: false
+    evidence: No SCIM endpoints documented; account/IAM management uses proprietary actions.
+  - id: odata
+    conforms: false
+    evidence: No OData conventions in the API surface.
+  - id: fhir
+    conforms: false
+    evidence: Not a healthcare API.
+  - id: psd2
+    conforms: false
+    evidence: Not a payments API.
+  - id: fapi
+    conforms: false
+    evidence: Not a financial-grade OAuth deployment.

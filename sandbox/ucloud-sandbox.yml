@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.ucloud.cn/api/summary/signature + https://docs.ucloud.cn/api/summary/public
+notes: >-
+  UCloud has no separate test-mode/live-mode key split — API calls run against
+  the real account. What it does publish: (1) the UAPI browser, an interactive
+  console API explorer that constructs requests, executes them, and generates
+  SDK samples; and (2) a documented debug credential pair with a known-good
+  signature test vector so developers can verify their signing code before
+  switching to real keys. Values below are verbatim from the published docs.
+console:
+  name: UAPI browser
+  url: https://console.ucloud.cn/uapi/ucloudapi
+  description: Interactive API explorer in the console; builds and fires requests and auto-generates SDK sample code.
+  api_key_console: https://console.ucloud.cn/uapi/apikey
+signature_test_vector:
+  description: >-
+    Published example keys for validating a signature implementation. Signing
+    the documented example request with these keys must produce the documented
+    signature; only then should real account keys be substituted.
+  public_key: ucloudsomeone@example.com1296235120854146120
+  private_key: 46f09bb9fab4f12dfc160dae12273d5332b5debe
+  example_request:
+    Action: DescribeUHostInstance
+    Region: cn-bj2
+    Limit: 10
+  expected_signature: cba5cf5ec4d4233d206b1b54951e3787350a642f
+modes:
+  test_live_split: false
+  notes: No sandbox environment, test key prefixes, test clocks, or fixture tooling are published for the Open API.

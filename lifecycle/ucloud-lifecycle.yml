@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.ucloud.cn/api + https://github.com/ucloud + live probes 2026-07-21
+versioning:
+  scheme: unversioned action namespace
+  notes: >-
+    The Open API has no version segment, header or date-pinning: operations
+    are flat Actions (e.g. DescribeUHostInstance) on a single gateway, and
+    evolution happens by adding actions and parameters. First-party SDKs and
+    the CLI carry their own semver release trains (see
+    changelog/ucloud-changelog.yml).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No published API deprecation policy and no RFC 8594 Sunset/Deprecation
+    header support was found. Deprecations surface informally (e.g. the
+    ucloud-sdk-python legacy SDK marked "[DEPRICATED]" on GitHub, the old
+    terraform provider repo pointing at the official successor).
+deprecated_components:
+  - {component: ucloud-sdk-python (Python 2 SDK), evidence: 'GitHub repo description "[DEPRICATED] python sdk for ucloud api"', successor: ucloud-sdk-python3}
+  - {component: terraform-provider-ucloud-old, evidence: repo deprecated in favor of ucloud/terraform-provider-ucloud}
+sla:
+  url: null
+  notes: No SLA page verifiable without JavaScript on www.ucloud.cn was found; the global site publishes a Services Agreement (https://www.ucloud-global.com/en/docs/agreement/ServicesAgreement).
+status_page: null
+status_page_notes: >-
+  No public status page was found: status.ucloud.cn does not resolve and
+  status.ucloud-global.com returns an empty response; neither the Chinese nor
+  the global site advertises one.

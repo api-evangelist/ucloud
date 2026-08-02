@@ -1,0 +1,84 @@
+generated: '2026-07-21'
+method: searched
+source: npm + PyPI + Maven Central + Packagist + pkg.go.dev + github.com/ucloud
+notes: >-
+  UCloud ships first-party API SDKs for Go, Python 3, Java, PHP, and Node.js,
+  all generated against the Action-based UCloud Open API, plus a first-party
+  CLI and Terraform/Pulumi providers. The Java SDK is published on Maven
+  Central as per-product modules under the cn.ucloud group (all at the same
+  release train, e.g. 1.2.43-release). Object-storage (UFile/US3) has its own
+  dedicated SDK line.
+packages:
+  - language: go
+    registry: gomodule
+    name: github.com/ucloud/ucloud-sdk-go
+    url: https://pkg.go.dev/github.com/ucloud/ucloud-sdk-go
+    install: go get github.com/ucloud/ucloud-sdk-go
+    repository: https://github.com/ucloud/ucloud-sdk-go
+    official: true
+  - language: python
+    registry: pypi
+    name: ucloud-sdk-python3
+    url: https://pypi.org/project/ucloud-sdk-python3/
+    install: pip install ucloud-sdk-python3
+    repository: https://github.com/ucloud/ucloud-sdk-python3
+    official: true
+  - language: java
+    registry: maven
+    name: cn.ucloud (per-product modules, e.g. cn.ucloud:ucloud-sdk-java-uhost)
+    url: https://central.sonatype.com/search?q=g%3Acn.ucloud
+    install: 'maven: cn.ucloud:ucloud-sdk-java-<product>:1.2.43-release'
+    repository: https://github.com/ucloud/ucloud-sdk-java
+    official: true
+    notes: Published as one Maven artifact per product (uhost, vpc, ulb, udisk, uk8s, ufile, ...), versioned together.
+  - language: php
+    registry: packagist
+    name: ucloud/ucloud-sdk-php
+    url: https://packagist.org/packages/ucloud/ucloud-sdk-php
+    install: composer require ucloud/ucloud-sdk-php
+    repository: https://github.com/ucloud/ucloud-sdk-php
+    official: true
+  - language: javascript
+    registry: npm
+    name: '@ucloud-sdks/ucloud-sdk-js'
+    url: https://www.npmjs.com/package/@ucloud-sdks/ucloud-sdk-js
+    install: npm install @ucloud-sdks/ucloud-sdk-js
+    repository: https://github.com/ucloud/ucloud-sdk-js
+    official: true
+  - language: php
+    registry: packagist
+    name: ucloud/ufile-php-sdk
+    url: https://packagist.org/packages/ucloud/ufile-php-sdk
+    install: composer require ucloud/ufile-php-sdk
+    official: true
+    notes: Object storage (UFile/US3) SDK, separate from the core Open API SDK.
+  - language: javascript
+    registry: npm
+    name: '@ucloud-sdks/ucloud-sandbox-cli'
+    url: https://www.npmjs.com/package/@ucloud-sdks/ucloud-sandbox-cli
+    install: npm install -g @ucloud-sdks/ucloud-sandbox-cli
+    repository: https://github.com/ucloud/ucloud-sandbox-cli
+    official: true
+    notes: CLI for managing UCloud sandbox templates.
+  - language: go
+    registry: github-releases
+    name: ucloud-cli
+    url: https://github.com/ucloud/ucloud-cli/releases
+    install: brew install ucloud
+    repository: https://github.com/ucloud/ucloud-cli
+    official: true
+    notes: First-party CLI (v0.3.9, 2026-07-20); see cli/ucloud-cli.yml.
+  - language: hcl
+    registry: terraform
+    name: ucloud/ucloud
+    url: https://registry.terraform.io/providers/ucloud/ucloud
+    install: 'terraform: required_providers ucloud = { source = "ucloud/ucloud" }'
+    repository: https://github.com/ucloud/terraform-provider-ucloud
+    official: true
+  - language: typescript
+    registry: github
+    name: pulumi-ucloud
+    url: https://github.com/ucloud/pulumi-ucloud
+    repository: https://github.com/ucloud/pulumi-ucloud
+    official: true
+    notes: Pulumi provider; repository dormant since 2021.

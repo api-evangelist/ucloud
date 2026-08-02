@@ -1,0 +1,57 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.ucloud.cn/api/summary/public + https://docs.ucloud.cn/api/summary/gateway + https://docs.ucloud.cn/api/summary/signature
+notes: >-
+  Cross-cutting request/response semantics of the UCloud Open API, captured
+  from the published API quickstart, gateway and signature docs plus UCloud's
+  own ucloud-cli agent skill. The API is a flat Action-based RPC surface (AWS
+  query-API style), not resource-oriented REST.
+style:
+  paradigm: action-rpc
+  description: One gateway endpoint; the operation is selected by the Action parameter (e.g. DescribeUHostInstance). HTTP GET and POST are both supported.
+  content_types: [application/json, application/x-www-form-urlencoded]
+endpoints:
+  public: https://api.ucloud.cn
+  vpc_internal: http://api.service.ucloud.cn
+authentication:
+  style: request signature (PublicKey + SHA1 Signature over sorted parameters + PrivateKey)
+  reference: authentication/ucloud-authentication.yml
+common_parameters:
+  required: [Action, PublicKey, Signature]
+  scoping:
+    - {name: Region, description: Region identifier (e.g. cn-bj2); see ListRegions}
+    - {name: Zone, description: Availability zone (e.g. cn-bj2-02); see ListZones}
+    - {name: ProjectId, description: Project scope; defaults to the default project, mandatory for sub-accounts; see GetProjectList}
+response_envelope:
+  fields: [RetCode, Action, Message]
+  success: RetCode == 0
+  errors: errors/ucloud-error-codes.yml
+pagination:
+  style: offset-limit
+  params: [Offset, Limit]
+  notes: List/Describe actions take Offset/Limit request parameters and return TotalCount alongside the result set (e.g. DescribeUHostInstance).
+idempotency:
+  supported: false
+  notes: No idempotency-key contract is documented for the Open API.
+request_tracing:
+  supported: false
+  notes: No documented request-id header; the response echoes a SessionID only in monitoring webhook callbacks.
+versioning:
+  style: unversioned
+  notes: The Action namespace is unversioned; evolution happens by adding actions/parameters. SDKs and CLI follow their own semver release trains (see changelog/ucloud-changelog.yml).
+rate_limits:
+  signaling: RetCode 153 (API request throttled) in the response envelope; no rate-limit response headers documented.
+timeouts:
+  api_gateway: 60s (RetCode 110 on timeout)
+discovery_lookups:
+  - {action: ListRegions, purpose: enumerate regions}
+  - {action: ListZones, purpose: enumerate zones for a region}
+  - {action: GetProjectList, purpose: enumerate accessible projects}
+  - {action: GetBalance, purpose: check account balance before creating billable resources}
+network_controls:
+  - Public-IP allowlist for open-API calls (console.ucloud.cn/uaccount/userinfo), account-wide including sub-accounts
+cross_links:
+  errors: errors/ucloud-error-codes.yml
+  authentication: authentication/ucloud-authentication.yml
+  lifecycle: lifecycle/ucloud-lifecycle.yml
+  cli: cli/ucloud-cli.yml

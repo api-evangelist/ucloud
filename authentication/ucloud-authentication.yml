@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+docs: https://docs.ucloud.cn/api/summary/signature
+source: https://docs.ucloud.cn/api/summary/signature + https://docs.ucloud.cn/api/summary/public
+notes: >-
+  The UCloud Open API uses a proprietary request-signature scheme, not OAuth
+  or bearer tokens. There is no OpenAPI document to derive from; this profile
+  was captured from the published signature and quickstart docs. Interactive
+  CLI sessions can alternatively authenticate with an OAuth browser flow
+  (`ucloud auth login`), but raw API calls always use the signature scheme.
+summary:
+  types: [signature]
+  transport: request parameters (query string or JSON/form body) over HTTPS GET/POST
+  oauth2_flows: []
+schemes:
+  - name: UCloudSignature
+    type: signature
+    description: >-
+      Every request carries the account PublicKey plus a Signature parameter.
+      The signature is SHA1(concatenation of all request parameters sorted
+      ascending by name, values appended without HTTP escaping, with the
+      account PrivateKey appended at the end). Keys are issued per account in
+      the UAPI console.
+    key_console: https://console.ucloud.cn/uapi/apikey
+    required_parameters: [Action, PublicKey, Signature]
+    scoping_parameters: [Region, Zone, ProjectId]
+    endpoints:
+      - {url: 'https://api.ucloud.cn', network: public, https: true}
+      - {url: 'http://api.service.ucloud.cn', network: vpc-internal, https: false, notes: In-VPC endpoint; HTTPS not supported; requires 10.10.10.10 in the account IP allowlist when one is configured.}
+    controls:
+      - IP allowlist for open-API calls configurable at console.ucloud.cn/uaccount/userinfo (applies to all sub-accounts)
+      - IAM sub-accounts; RetCode 299 signals an IAM permission failure
+      - ProjectId scoping (sub-accounts must always pass ProjectId)
+  - name: CLIOAuth
+    type: oauth2-interactive
+    description: >-
+      The first-party ucloud CLI supports OAuth authorization (`ucloud auth
+      login`, with --no-browser for headless environments) as the preferred
+      way to initialize a profile, falling back to AK/SK (PublicKey/PrivateKey)
+      profiles for scripts and CI/CD.
+    docs: https://github.com/ucloud/skills/blob/main/ucloud-cli/SKILL.md
