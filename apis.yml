@@ -78,6 +78,12 @@ apis:
   - Compute
   - Storage
   - Networking
+  - Database
+  tags_raw:
+  - Cloud
+  - Compute
+  - Storage
+  - Networking
   - Databases
   properties:
   - type: Documentation
