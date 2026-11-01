@@ -64,6 +64,102 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-UCloud is a company surfaced as a portfolio company of dcm-ventures and added to the API Evangelist network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the enrichment pipeline.
+UCloud (优刻得, UCloud Technology Co., Ltd.) is a neutral Chinese cloud computing provider listed on the SSE STAR Market (688158), offering compute (UHost, bare-metal, GPU), object storage (UFile/US3), networking (VPC, ULB, EIP), Kubernetes (UK8S), databases, CDN, monitoring and AI infrastructure across China and 20+ global regions. Everything is managed through one Action-based Open API at api.ucloud.cn with signed requests, first-party SDKs in five languages, a CLI with an official published agent skill, and a Terraform provider. UCloud also runs an international arm at ucloud-global.com.
 
-Backed by: dcm-ventures — http://www.ucloud.cn/
+**Areas:** Company · Enterprise · Cloud Computing · Infrastructure-as-a-Service · GPU · Kubernetes · Object Storage · CDN · China
+
+## UCloud on APIs.io
+
+Everything profiled for UCloud is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ucloud/](https://apis.io/providers/ucloud/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [UCloud Open API](https://apis.io/apis/ucloud/ucloud-open-api/) — Action-based RPC API covering every UCloud product (compute, networking, storage, databases, Kubernetes, monitoring, AI) through a single signed gateway.…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Ucloud Webhooks](https://apis.io/asyncapis/ucloud/ucloud-webhooks/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ucloud Authentication](https://apis.io/security/ucloud/ucloud-authentication/)
+- [Ucloud Domain Security](https://apis.io/security/ucloud/ucloud-domain-security/)
+- [Ucloud Vulnerability Disclosure](https://apis.io/security/ucloud/ucloud-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ucloud.cn/)
+- [Documentation](https://docs.ucloud.cn/)
+- [Getting started](https://docs.ucloud.cn/api/summary/public)
+- [API reference](https://docs.ucloud.cn/api)
+- [Pricing](https://www.ucloud-global.com/en/price)
+- [Sign up](https://passport.ucloud.cn/)
+- [Support](https://spt.ucloud.cn/)
+- [Blog](https://www.ucloud-global.com/en/blog)
+- [Security](https://src.ucloud.cn/)
+- [Terms of service](https://www.ucloud-global.com/en/docs/agreement/ServicesAgreement)
+- [Privacy policy](https://www.ucloud-global.com/en/docs/agreement/PrivacyPolicy)
+- [GitHub](https://github.com/ucloud)
+
+## API Evangelist rating
+
+**Kin Score 36.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 39.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 31.6 |
+
+**Agent readiness 29.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ucloud/](https://apis.io/providers/ucloud/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for UCloud: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ucloud/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
